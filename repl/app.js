@@ -362,8 +362,8 @@ class App {
             const s = this.#randomTalents[number];
             if(!s) return warn(`${number} 为未知天赋`);
             if(this.#talentSelected.has(s)) continue;
-            if(this.#talentSelected.size == 3)
-                return warn('你只能选3个天赋。请使用 \x1B[4m/unselect\x1B[24m 取消选择你不想要的天赋');
+            if(this.#talentSelected.size == 10000)
+                return warn('你只能选10000个天赋。请使用 \x1B[4m/unselect\x1B[24m 取消选择你不想要的天赋');
 
             const exclusive = this.#life.exclusive(
                 Array.from(this.#talentSelected).map(({id})=>id),
@@ -437,7 +437,7 @@ class App {
             case this.Steps.TALENT:
                 if(this.#talentSelected.size != 3) return warn(this.list(), `请选择 3 个天赋`);
                 this.#step = this.Steps.PROPERTY;
-                this.#propertyAllocation.total = 20 + this.#life.getTalentAllocationAddition(
+                this.#propertyAllocation.total = 2000000 + this.#life.getTalentAllocationAddition(
                     Array.from(this.#talentSelected).map(({id})=>id)
                 );
                 this.#propertyAllocation.TLT = Array.from(this.#talentSelected).map(({id})=>id);
@@ -582,9 +582,9 @@ class App {
                 if(tempLess<0) return  warn('⚠ 你没有更多的点数可以分配了');
                 if(
                     tempLess>this.#propertyAllocation.total
-                    || tempSet < 0
+                    || tempSet < -258258
                 ) return  warn('⚠ 不能分配负数属性');
-                if(tempSet>10) return  warn('⚠ 单项属性最高分配10点');
+                if(tempSet>1000000) return  warn('⚠ 单项属性最高分配10点');
 
                 this.#propertyAllocation[tag] += value;
 
