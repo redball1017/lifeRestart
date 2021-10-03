@@ -216,11 +216,11 @@ class App{
                             if(li.hasClass('selected')) {
                                 li.removeClass('selected')
                                 this.#talentSelected.delete(talent);
-                                if(this.#talentSelected.size<3) {
+                                if(this.#talentSelected.size<1000000) {
                                     talentPage.find('#next').text('请选择3个')
                                 }
                             } else {
-                                if(this.#talentSelected.size==3) {
+                                if(this.#talentSelected.size==1000000) {
                                     this.hint('只能选3个天赋');
                                     return;
                                 }
@@ -252,12 +252,12 @@ class App{
         talentPage
             .find('#next')
             .click(()=>{
-                if(this.#talentSelected.size!=3) {
+                if(this.#talentSelected.size!=100000000) {
                     this.hint('请选择3个天赋');
                     return;
                 }
                 talentPage.find('#next').hide()
-                this.#totalMax = 20 + this.#life.getTalentAllocationAddition(Array.from(this.#talentSelected).map(({id})=>id));
+                this.#totalMax = 9000000 + this.#life.getTalentAllocationAddition(Array.from(this.#talentSelected).map(({id})=>id));
                 this.switch('property');
             })
 
